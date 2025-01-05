@@ -28,20 +28,6 @@ public class CommonResponse<T> {
 			.build();
 	}
 
-	public static CommonResponse fail(String errorMessageForClient, String errorMessageForLog) {
-		return CommonResponse.builder()
-			.result(Result.FAIL)
-			.errorMessageForClient(errorMessageForClient)
-			.errorMessageForLog(errorMessageForLog)
-			.build();
-	}
-
-	public static CommonResponse fail() {
-		return CommonResponse.builder()
-			.result(Result.FAIL)
-			.build();
-	}
-
 	public enum Result {
 		SUCCESS, FAIL
 	}
