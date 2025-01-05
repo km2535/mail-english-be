@@ -1,25 +1,24 @@
 package com.mail.tech.domain.subscribe;
 
+import java.time.LocalDateTime;
+
+import com.mail.tech.domain.BaseEntity;
+import com.mail.tech.domain.TECH;
 import com.mail.tech.domain.token.TokenGenerator;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Subscribe {
+public class Subscribe extends BaseEntity {
 	public static final String SUBSCRIBE_PREFIX = "subscribe_";
+	private final String subscribeToken;
+	private final String email;
+	private final TECH tech;
 
-	private Long id;
-	private String subscribeToken;
-	private String email;
-
-	Subscribe(String email) {
-		super();
+	Subscribe(String email, TECH tech) {
+		super(LocalDateTime.now(), LocalDateTime.now());
 		this.email = email;
+		this.tech = tech;
 		this.subscribeToken = TokenGenerator.randomCharacterWithPrefix(SUBSCRIBE_PREFIX);
 	}
 }

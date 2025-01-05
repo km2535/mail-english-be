@@ -18,7 +18,7 @@ public class SubscribeServiceImpl implements SubscribeService {
 
 	@Override
 	public AddSubscribeInfo addSubscribe(AddSubscribeCommand command) {
-		Subscribe subscribe = new Subscribe(command.email());
+		Subscribe subscribe = new Subscribe(command.email(), command.tech());
 		if (subscribeMapper.save(subscribe) == 1) {
 			return AddSubscribeInfo.of(subscribe);
 		}
