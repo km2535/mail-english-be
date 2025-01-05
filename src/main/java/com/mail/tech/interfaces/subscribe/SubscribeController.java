@@ -16,9 +16,9 @@ import com.mail.tech.interfaces.dto.SubscribeDtoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RequiredArgsConstructor
-@RestController
 @Slf4j
+@RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/subscribe")
 public class SubscribeController {
 	private final SubscribeFacade subscribeFacade;

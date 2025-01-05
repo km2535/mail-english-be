@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mail.tech.infrastructure.SubscribeMapper">
+<mapper namespace="com.mail.tech.infrastructure.subscribe.SubscribeMapper">
     <insert id="save" parameterType="com.mail.tech.domain.subscribe.Subscribe">
         INSERT INTO subscribe (email, subscribe_token, tech, created_at, modified_at)
         VALUES (#{email}, #{subscribeToken}, #{tech}, #{createdAt}, #{modifiedAt})
     </insert>
+    <select id="existsByEmail" resultType="boolean">
+        SELECT EXISTS (SELECT 1
+                       FROM subscribe
+                       WHERE email = #{email});
+    </select>
 </mapper>

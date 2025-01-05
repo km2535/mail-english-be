@@ -1,4 +1,4 @@
-package com.mail.tech.infrastructure;
+package com.mail.tech.infrastructure.subscribe;
 
 import org.springframework.stereotype.Component;
 

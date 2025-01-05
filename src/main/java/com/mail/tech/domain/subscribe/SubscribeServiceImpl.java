@@ -13,10 +13,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class SubscribeServiceImpl implements SubscribeService {
 	private final SubscribeStore subscribeStore;
+	private final SubscribeReader subscribeReader;
 
 	@Override
 	public AddSubscribeInfo addSubscribe(AddSubscribeCommand command) {
 		Subscribe subscribe = new Subscribe(command.email(), command.tech());
+		System.out.println(subscribeReader.exist(subscribe.getEmail()));
+		if (subscribeReader.exist(subscribe.getEmail())) {
+			throw new RuntimeException("이미 구독하였습니다.");
+		}
 		if (subscribeStore.save(subscribe) == 1) {
 			return AddSubscribeInfo.of(subscribe);
 		}
