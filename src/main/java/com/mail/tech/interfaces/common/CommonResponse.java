@@ -1,4 +1,4 @@
-package com.mail.tech.interfaces.dto;
+package com.mail.tech.interfaces.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

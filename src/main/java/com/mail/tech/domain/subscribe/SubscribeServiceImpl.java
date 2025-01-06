@@ -3,7 +3,11 @@ package com.mail.tech.domain.subscribe;
 import org.springframework.stereotype.Service;
 
 import com.mail.tech.domain.command.AddSubscribeCommand;
+import com.mail.tech.domain.command.DeleteSubscribeCommand;
+import com.mail.tech.domain.command.UpdateSubscribeCommand;
 import com.mail.tech.domain.info.AddSubscribeInfo;
+import com.mail.tech.domain.info.DeleteSubscribeInfo;
+import com.mail.tech.domain.info.UpdateSubscribeInfo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +22,6 @@ public class SubscribeServiceImpl implements SubscribeService {
 	@Override
 	public AddSubscribeInfo addSubscribe(AddSubscribeCommand command) {
 		Subscribe subscribe = new Subscribe(command.email(), command.tech());
-		System.out.println(subscribeReader.exist(subscribe.getEmail()));
 		if (subscribeReader.exist(subscribe.getEmail())) {
 			throw new RuntimeException("이미 구독하였습니다.");
 		}
@@ -26,5 +29,25 @@ public class SubscribeServiceImpl implements SubscribeService {
 			return AddSubscribeInfo.of(subscribe);
 		}
 		throw new RuntimeException("저장에 실패하였습니다.");
+	}
+
+	@Override
+	public UpdateSubscribeInfo updateSubscribe(UpdateSubscribeCommand command) {
+		Subscribe subscribe = new Subscribe(command.email(), command.tech());
+		if (!subscribeReader.exist(subscribe.getEmail())) {
+			throw new RuntimeException("구독 먼저하셔야 합니다.");
+		}
+		subscribeStore.update(command.email(), command.tech());
+		return UpdateSubscribeInfo.of(subscribe);
+	}
+
+	@Override
+	public DeleteSubscribeInfo deleteSubscribe(DeleteSubscribeCommand command) {
+		Subscribe subscribe = new Subscribe(command.email());
+		if (!subscribeReader.exist(command.email())) {
+			throw new RuntimeException("구독 먼저하셔야 합니다.");
+		}
+		subscribeStore.delete(command.email());
+		return DeleteSubscribeInfo.of(subscribe);
 	}
 }

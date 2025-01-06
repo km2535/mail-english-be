@@ -21,4 +21,11 @@ public class Subscribe extends BaseEntity {
 		this.tech = tech;
 		this.subscribeToken = TokenGenerator.randomCharacterWithPrefix(SUBSCRIBE_PREFIX);
 	}
+
+	public Subscribe(String email) {
+		super(LocalDateTime.now(), LocalDateTime.now());
+		this.email = email;
+		this.subscribeToken = TokenGenerator.randomCharacterWithPrefix(SUBSCRIBE_PREFIX);
+		this.tech = TECH.FULLSTACK;
+	}
 }

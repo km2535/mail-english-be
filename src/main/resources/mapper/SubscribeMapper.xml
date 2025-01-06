@@ -11,4 +11,14 @@
                        FROM subscribe
                        WHERE email = #{email});
     </select>
+    <update id="update">
+        UPDATE subscribe
+        SET tech = #{tech}
+        WHERE email = #{email};
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM subscribe
+        WHERE email = #{email}
+    </delete>
 </mapper>

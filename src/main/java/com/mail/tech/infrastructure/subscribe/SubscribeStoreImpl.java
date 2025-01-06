@@ -2,6 +2,7 @@ package com.mail.tech.infrastructure.subscribe;
 
 import org.springframework.stereotype.Component;
 
+import com.mail.tech.domain.TECH;
 import com.mail.tech.domain.subscribe.Subscribe;
 import com.mail.tech.domain.subscribe.SubscribeStore;
 
@@ -15,5 +16,15 @@ public class SubscribeStoreImpl implements SubscribeStore {
 	@Override
 	public int save(Subscribe subscribe) {
 		return subscribeMapper.save(subscribe);
+	}
+
+	@Override
+	public void update(String email, TECH tech) {
+		subscribeMapper.update(email, tech);
+	}
+
+	@Override
+	public void delete(String email) {
+		subscribeMapper.delete(email);
 	}
 }

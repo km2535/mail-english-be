@@ -1,4 +1,4 @@
-package com.mail.tech.interfaces.dto;
+package com.mail.tech.interfaces.subscribe.dto;
 
 import com.mail.tech.domain.TECH;
 
