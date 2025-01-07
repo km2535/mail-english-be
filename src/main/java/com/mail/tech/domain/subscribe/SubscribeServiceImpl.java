@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.mail.tech.domain.command.AddSubscribeCommand;
 import com.mail.tech.domain.command.DeleteSubscribeCommand;
 import com.mail.tech.domain.command.UpdateSubscribeCommand;
+import com.mail.tech.domain.exception.SubscribeException;
+import com.mail.tech.domain.exception.SubscribeFailException;
 import com.mail.tech.domain.info.AddSubscribeInfo;
 import com.mail.tech.domain.info.DeleteSubscribeInfo;
 import com.mail.tech.domain.info.UpdateSubscribeInfo;
@@ -23,12 +25,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 	public AddSubscribeInfo addSubscribe(AddSubscribeCommand command) {
 		Subscribe subscribe = new Subscribe(command.email(), command.tech());
 		if (subscribeReader.exist(subscribe.getEmail())) {
-			throw new RuntimeException("이미 구독하였습니다.");
+			throw new SubscribeException(command.email());
 		}
 		if (subscribeStore.save(subscribe) == 1) {
 			return AddSubscribeInfo.of(subscribe);
 		}
-		throw new RuntimeException("저장에 실패하였습니다.");
+		throw new SubscribeFailException(command.email());
 	}
 
 	@Override

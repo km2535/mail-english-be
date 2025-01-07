@@ -22,7 +22,7 @@ public class EmailScheduler {
 	private final SubscribeReader subscribeReader;
 	private final ContentReader contentReader;
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(cron = "0 0 9 * * ?") // 매일 오전 9시 실행
 	public void sendDailyEmailsBackEnd() throws MessagingException {
 		List<Subscribe> subscribes = subscribeReader.findByTech(TECH.BACKEND);
 
