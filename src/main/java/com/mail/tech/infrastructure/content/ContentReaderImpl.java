@@ -18,4 +18,9 @@ public class ContentReaderImpl implements ContentReader {
 		Content content = contentMapper.findByContentToken(contentToken);
 		return GetContentInfo.of(content);
 	}
+
+	@Override
+	public Content findRandom() {
+		return contentMapper.findRandom();
+	}
 }

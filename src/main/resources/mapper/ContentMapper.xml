@@ -7,6 +7,12 @@
         FROM contents
         WHERE content_token = #{contentToken}
     </select>
+    
+    <select id="findRandom" resultType="com.mail.tech.domain.content.Content">
+        SELECT content_token, title, content_kor, tech, content_eng, created_at, modified_at
+        FROM contents
+        ORDER BY RAND() LIMIT 1
+    </select>
 
 
 </mapper>

@@ -11,6 +11,13 @@
                        FROM subscribe
                        WHERE email = #{email});
     </select>
+    <select id="findByTech" resultType="com.mail.tech.domain.subscribe.Subscribe">
+        SELECT email,
+               subscribe_token AS subscribeToken,
+               tech
+        FROM subscribe
+        WHERE tech = #{tech};
+    </select>
     <update id="update">
         UPDATE subscribe
         SET tech = #{tech}

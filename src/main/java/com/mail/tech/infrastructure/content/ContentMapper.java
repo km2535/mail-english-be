@@ -7,4 +7,6 @@ import com.mail.tech.domain.content.Content;
 @Mapper
 public interface ContentMapper {
 	Content findByContentToken(String contentToken);
+
+	Content findRandom();
 }

@@ -1,7 +1,11 @@
 package com.mail.tech.infrastructure.subscribe;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import com.mail.tech.domain.TECH;
+import com.mail.tech.domain.subscribe.Subscribe;
 import com.mail.tech.domain.subscribe.SubscribeReader;
 
 import lombok.RequiredArgsConstructor;
@@ -17,4 +21,10 @@ public class SubscribeReaderImpl implements SubscribeReader {
 	public Boolean exist(String email) {
 		return subscribeMapper.existsByEmail(email);
 	}
+
+	@Override
+	public List<Subscribe> findByTech(TECH tech) {
+		return subscribeMapper.findByTech(tech);
+	}
+
 }
