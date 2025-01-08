@@ -7,12 +7,18 @@
         FROM contents
         WHERE content_token = #{contentToken}
     </select>
-    
+
     <select id="findRandom" resultType="com.mail.tech.domain.content.Content">
         SELECT content_token, title, content_kor, tech, content_eng, created_at, modified_at
         FROM contents
         ORDER BY RAND() LIMIT 1
     </select>
 
-
+    <select id="findByContentCount" resultType="com.mail.tech.domain.info.GetContentsCountInfo">
+        SELECT SUM(tech = 'BACKEND')   AS backendBoardCount,
+               SUM(tech = 'FRONTEND')  AS frontendBoardCount,
+               SUM(tech = 'FULLSTACK') AS fullstackBoardCount,
+               SUM(tech = 'INFRA')     AS infraBoardCount
+        FROM contents;
+    </select>
 </mapper>

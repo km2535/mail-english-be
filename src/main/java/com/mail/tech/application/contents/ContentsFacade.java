@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.mail.tech.domain.content.ContentService;
 import com.mail.tech.domain.info.GetContentInfo;
+import com.mail.tech.domain.info.GetContentsCountInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,5 +15,9 @@ public class ContentsFacade {
 
 	public GetContentInfo findContent(String contentToken) {
 		return contentService.getContentInfo(contentToken);
+	}
+
+	public GetContentsCountInfo findContentCount() {
+		return contentService.getContentsCount();
 	}
 }

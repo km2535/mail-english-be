@@ -5,6 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 import com.mail.tech.domain.info.GetContentInfo;
+import com.mail.tech.domain.info.GetContentsCountInfo;
 
 @Mapper(
 	componentModel = "spring",
@@ -13,4 +14,6 @@ import com.mail.tech.domain.info.GetContentInfo;
 )
 public interface ContentsDtoMapper {
 	GetContentResponse of(GetContentInfo getContentInfo);
+
+	GetContentsCountResponse of(GetContentsCountInfo countInfo);
 }

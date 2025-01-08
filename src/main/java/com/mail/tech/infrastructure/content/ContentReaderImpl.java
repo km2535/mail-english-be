@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import com.mail.tech.domain.content.Content;
 import com.mail.tech.domain.content.ContentReader;
 import com.mail.tech.domain.info.GetContentInfo;
+import com.mail.tech.domain.info.GetContentsCountInfo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,5 +23,10 @@ public class ContentReaderImpl implements ContentReader {
 	@Override
 	public Content findRandom() {
 		return contentMapper.findRandom();
+	}
+
+	@Override
+	public GetContentsCountInfo findContentsCount() {
+		return contentMapper.findByContentCount();
 	}
 }

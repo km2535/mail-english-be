@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mail.tech.application.contents.ContentsFacade;
 import com.mail.tech.domain.info.GetContentInfo;
+import com.mail.tech.domain.info.GetContentsCountInfo;
 import com.mail.tech.interfaces.common.CommonResponse;
 import com.mail.tech.interfaces.contents.dto.ContentsDtoMapper;
 import com.mail.tech.interfaces.contents.dto.GetContentResponse;
+import com.mail.tech.interfaces.contents.dto.GetContentsCountResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +31,12 @@ public class ContentsController {
 		return CommonResponse.success(response);
 	}
 
+	@GetMapping("/count")
+	public CommonResponse<GetContentsCountResponse> getContentsCount() {
+		GetContentsCountInfo countInfo = contentsFacade.findContentCount();
+		GetContentsCountResponse response = contentsDtoMapper.of(countInfo);
+		return CommonResponse.success(response);
+	}
 	//TODO: 특정 컨텐츠 리스트 조회
 	//TODO: 컨텐츠 추가
 	//TODO: 컨텐츠 삭제
