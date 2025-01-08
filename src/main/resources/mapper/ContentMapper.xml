@@ -15,10 +15,10 @@
     </select>
 
     <select id="findByContentCount" resultType="com.mail.tech.domain.info.GetContentsCountInfo">
-        SELECT SUM(tech = 'BACKEND')   AS backendBoardCount,
-               SUM(tech = 'FRONTEND')  AS frontendBoardCount,
-               SUM(tech = 'FULLSTACK') AS fullstackBoardCount,
-               SUM(tech = 'INFRA')     AS infraBoardCount
+        SELECT SUM(tech = 'BACKEND')                                        AS backendBoardCount,
+               SUM(tech = 'FRONTEND')                                       AS frontendBoardCount,
+               SUM(tech = 'INFRA')                                          AS infraBoardCount,
+               SUM(tech = 'BACKEND' OR tech = 'FRONTEND' OR tech = 'INFRA') AS fullstackBoardCount
         FROM contents;
     </select>
 </mapper>
