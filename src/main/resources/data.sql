@@ -1,4 +1,19 @@
+CREATE DATABASE IF NOT EXISTS tech;
 use tech;
+CREATE TABLE IF NOT EXISTS contents (
+                                        id INT AUTO_INCREMENT PRIMARY KEY, -- ID column, auto-incremented
+                                        content_token VARCHAR(255) NOT NULL, -- Token associated with the content
+                                        tech VARCHAR(255) NOT NULL, -- Technology associated with the content
+                                        title VARCHAR(255) NOT NULL, -- Title of the content
+                                        content_kor TEXT, -- Korean content description
+                                        content_eng TEXT, -- English content description
+                                        is_send BOOLEAN DEFAULT FALSE, -- Flag indicating whether the content is sent
+                                        send_date TIMESTAMP, -- Date when the content was sent
+                                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record was created
+                                        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for the last update
+);
+
+
 insert into contents (id, content_token, tech, title, content_kor, content_eng, is_send, send_date, created_at,
                       modified_at)
 values (1, 'content_1', 'BACKEND', '인스턴스와 클래스가 차이에 대해 설명해주세요.', '클래스는 객체를 만들기 위한 설계도이고, 인스턴스는 이 설계도를 통해 만들어진 실제 객체입니다.
